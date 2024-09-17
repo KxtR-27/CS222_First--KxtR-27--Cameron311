@@ -1,17 +1,13 @@
 package edu.bsu.cs;
 
+import com.jayway.jsonpath.JsonPath;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class JsonTranslator {
-    String rawJson;
 
-    public JsonTranslator(String rawJson) {
-        this.rawJson = rawJson;
-    }
-
-    public String giveRawJson() {
-        return rawJson;
-    }
-
-    public String giveFormattedJson() {
-        return "";
+    public static String parse(InputStream inputStream) throws IOException {
+        return JsonPath.read(inputStream, "$..timestamp").toString();
     }
 }
