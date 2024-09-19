@@ -1,13 +1,21 @@
 package edu.bsu.cs;
 
+import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 
 public class JsonTranslator {
+    private final Object jsonAsRereadableDocument;
 
-    public static String parse(InputStream inputStream) throws IOException {
-        return JsonPath.read(inputStream, "$..timestamp").toString();
+    public JsonTranslator(String jsonAsString) {
+        jsonAsRereadableDocument = Configuration.defaultConfiguration().jsonProvider().parse(jsonAsString);
+    }
+
+    public List<String> getEntriesMatchingTargetAsList(String target) {
+        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", target));
+    }
+    public String getEntriesMatchingTargetAsString(String target) {
+        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", target)).toString();
     }
 }
