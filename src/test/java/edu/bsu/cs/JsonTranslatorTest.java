@@ -74,16 +74,16 @@ public class JsonTranslatorTest {
     }
 
     @Test
-    public void test_getRevisionAsString(){
-        String expected = "[\"Elephant\"]";
-        String actual = multipleRedirectsJsonTranslator.getEntriesMatchingTargetAsString("redirects[-1].to");
-        Assertions.assertEquals(expected,actual);
+    public void test_getRedirectAsString(){
+        String expectedRedirect = "[\"Elephant\"]";
+        String actualRedirect = multipleRedirectsJsonTranslator.getEntriesMatchingTargetAsString("redirects[-1].to");
+        Assertions.assertEquals(expectedRedirect,actualRedirect);
     }
 
     @Test
-    public void test_getRevisionAsList(){
-        List<String> expected = Arrays.asList("Elephant");
-        List<String> actual = multipleRedirectsJsonTranslator.getEntriesMatchingTargetAsList("redirects[-1].to");
-        Assertions.assertEquals(expected,actual);
+    public void test_getRedirectAsList(){
+        List<String> expectedRedirect = Arrays.asList("Elephant");
+        List<String> actualRedirect = multipleRedirectsJsonTranslator.getEntriesMatchingTargetAsList("redirects[-1].to");
+        Assertions.assertEquals(expectedRedirect,actualRedirect);
     }
 }
