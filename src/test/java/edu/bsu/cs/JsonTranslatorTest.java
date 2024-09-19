@@ -73,5 +73,17 @@ public class JsonTranslatorTest {
         Assertions.assertEquals(expectedListOfUsers, actualListOfUsers);
     }
 
+    @Test
+    public void test_getRevisionAsString(){
+        String expected = "[\"Frank Zappa\"]";
+        String actual = jsonTranslator.getEntriesMatchingTargetAsString("redirects[-1].to");
+        Assertions.assertEquals(expected,actual);
+    }
 
+    @Test
+    public void test_getRevisionAsList(){
+        List<String> expected = Arrays.asList("Frank Zappa");
+        List<String> actual = jsonTranslator.getEntriesMatchingTargetAsList("redirects[-1].to");
+        Assertions.assertEquals(expected,actual);
+    }
 }

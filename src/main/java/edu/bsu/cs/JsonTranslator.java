@@ -18,4 +18,6 @@ public class JsonTranslator {
     public String getEntriesMatchingTargetAsString(String target) {
         return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", target)).toString();
     }
+
+
 }
