@@ -15,5 +15,5 @@ The second iteration will make use of **JavaFX** for both input and output.
 |----------------------|--------------|---------------|
 | Kat Razo             | `katrazo`    | Co-author     |
 | Cameron Witzigreuter | `Cameron311` | Co-author     |
-| ...                  | ...          | Peer Reviewer |
-| ...                  | ...          | Peer Reviewer |
+| Priscilla Zavala     | `pazavala`   | Peer Reviewer |
+| Mark William         | `Gaezi`      | Peer Reviewer |
