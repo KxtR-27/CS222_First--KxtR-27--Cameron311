@@ -46,22 +46,24 @@ public class WebPageDataTest {
         );
         String actualWebPageDataString = new WebPageData(timestampsForObject, usersForObject, redirectForObject).toString();
 
-        String expectedWebPageDataString = "Redirected to Frank Zappa\n" +
-                "2024-09-11T23:03:49Z  Willem247\n" +
-                "2024-09-11T23:03:06Z  Willem247\n" +
-                "2024-09-11T06:24:43Z  GreenC bot\n" +
-                "2024-09-10T16:13:29Z  Theworldismovingon2022\n" +
-                "2024-09-07T21:05:19Z  Kjell Knudde\n" +
-                "2024-09-07T19:09:58Z  Aaw1989\n" +
-                "2024-09-05T04:31:51Z  Eurukleia\n" +
-                "2024-09-05T04:30:19Z  Eurukleia\n" +
-                "2024-09-03T21:27:38Z  Aaw1989\n" +
-                "2024-08-29T00:32:05Z  Mad420\n" +
-                "2024-08-27T16:34:04Z  Aaw1989\n" +
-                "2024-08-25T15:17:53Z  Citation bot\n" +
-                "2024-08-24T08:15:54Z  Aaw1989\n" +
-                "2024-08-24T08:08:03Z  Aaw1989\n" +
-                "2024-08-22T11:19:56Z  RobertG\n";
+        String expectedWebPageDataString = String.format(
+                "Redirected to Frank Zappa%n" +
+                "2024-09-11T23:03:49Z  Willem247%n" +
+                "2024-09-11T23:03:06Z  Willem247%n" +
+                "2024-09-11T06:24:43Z  GreenC bot%n" +
+                "2024-09-10T16:13:29Z  Theworldismovingon2022%n" +
+                "2024-09-07T21:05:19Z  Kjell Knudde%n" +
+                "2024-09-07T19:09:58Z  Aaw1989%n" +
+                "2024-09-05T04:31:51Z  Eurukleia%n" +
+                "2024-09-05T04:30:19Z  Eurukleia%n" +
+                "2024-09-03T21:27:38Z  Aaw1989%n" +
+                "2024-08-29T00:32:05Z  Mad420%n" +
+                "2024-08-27T16:34:04Z  Aaw1989%n" +
+                "2024-08-25T15:17:53Z  Citation bot%n" +
+                "2024-08-24T08:15:54Z  Aaw1989%n" +
+                "2024-08-24T08:08:03Z  Aaw1989%n" +
+                "2024-08-22T11:19:56Z  RobertG%n"
+        );
 
         Assertions.assertEquals(expectedWebPageDataString, actualWebPageDataString);
     }

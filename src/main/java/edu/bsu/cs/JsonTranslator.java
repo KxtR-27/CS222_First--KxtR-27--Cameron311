@@ -12,12 +12,15 @@ public class JsonTranslator {
         jsonAsRereadableDocument = Configuration.defaultConfiguration().jsonProvider().parse(jsonAsString);
     }
 
-    public List<String> getEntriesMatchingTargetAsList(String target) {
+    public List<String> getTargetList(String target) {
         return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", target));
     }
-    public String getEntriesMatchingTargetAsString(String target) {
-        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", target)).toString();
-    }
 
+    public String getSingleValueFromList(String pathOfTargetList, int indexInTargetList, String keyForJsonValue) {
+        return JsonPath.read(
+                jsonAsRereadableDocument,
+                String.format("$.%s[%d].%s", pathOfTargetList, indexInTargetList, keyForJsonValue)
+        ).toString();
+    }
 
 }
