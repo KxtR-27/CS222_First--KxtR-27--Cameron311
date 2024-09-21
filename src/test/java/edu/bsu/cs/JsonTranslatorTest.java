@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JsonTranslatorTest {
-    JsonTranslator defaultJsonTranslator = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"redirects\":[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}],\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
-    JsonTranslator multipleRedirectsJsonTranslator = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"redirects\":[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"},{\"from\":\"Frank Zappa\",\"to\":\"Elephant\"}],\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
+    JsonTranslator jsonTranslatorDefault = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"redirects\":[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}],\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
+    JsonTranslator jsonTranslatorMultipleRedirects = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"redirects\":[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"},{\"from\":\"Frank Zappa\",\"to\":\"Elephant\"}],\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
 
     @Test
     public void test_getListOfTimestamps() {
@@ -29,13 +29,13 @@ public class JsonTranslatorTest {
                 "2024-08-24T08:08:03Z",
                 "2024-08-22T11:19:56Z"
         );
-        List<String> actualListOfTimestamps = defaultJsonTranslator.getTargetList("timestamp");
+        List<String> actualListOfTimestamps = jsonTranslatorDefault.getTargetList("timestamp");
 
         Assertions.assertEquals(expectedListOfTimestamps, actualListOfTimestamps);
     }
 
     @Test
-    public void test_getListOfUsersAsList() {
+    public void test_getListOfUsers() {
         List<String> expectedListOfUsers = Arrays.asList(
                 "Willem247",
                 "Willem247",
@@ -53,7 +53,7 @@ public class JsonTranslatorTest {
                 "Aaw1989",
                 "RobertG"
         );
-        List<String> actualListOfUsers = defaultJsonTranslator.getTargetList("user");
+        List<String> actualListOfUsers = jsonTranslatorDefault.getTargetList("user");
 
         Assertions.assertEquals(expectedListOfUsers, actualListOfUsers);
     }
@@ -61,8 +61,16 @@ public class JsonTranslatorTest {
     @Test
     public void test_getLastRedirectDestination() {
         String expectedRedirect = "Elephant";
-        String actualRedirect = multipleRedirectsJsonTranslator.getSingleValueFromList("query.redirects", -1, "to");
+        String actualRedirect = jsonTranslatorMultipleRedirects.getSingleValueFromList("query.redirects", -1, "to");
 
         Assertions.assertEquals(expectedRedirect, actualRedirect);
     }
+    @Test
+    public void test_getOnlyRedirectDestination() {
+        String expectedRedirect = "Frank Zappa";
+        String actualRedirect = jsonTranslatorDefault.getSingleValueFromList("query.redirects", -1, "to");
+
+        Assertions.assertEquals(expectedRedirect, actualRedirect);
+    }
+
 }

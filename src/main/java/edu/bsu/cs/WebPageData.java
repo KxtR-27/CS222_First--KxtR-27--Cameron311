@@ -3,9 +3,11 @@ package edu.bsu.cs;
 import java.util.List;
 
 public class WebPageData {
-    String redirect;
-    List<String> timestamps;
-    List<String> users;
+
+    // Not named with SNAKE_UPPERCASE because not treated like constants.
+    private final String redirect;
+    private final List<String> timestamps;
+    private final List<String> users;
 
     public WebPageData(List<String> timestamps, List<String> users, String redirect) {
         this.timestamps = timestamps;
@@ -15,13 +17,13 @@ public class WebPageData {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder outputBuilder = new StringBuilder();
         if (redirect != null)
-            stringBuilder.append(String.format("Redirected to %s%n", redirect));
+            outputBuilder.append(String.format("Redirected to %s%n", redirect));
 
         for (int i = 0; i < timestamps.size(); i++) {
-            stringBuilder.append(String.format("%s  %s%n", timestamps.get(i), users.get(i)));
+            outputBuilder.append(String.format("%s  %s%n", timestamps.get(i), users.get(i)));
         }
-        return stringBuilder.toString();
+        return outputBuilder.toString();
     }
 }
