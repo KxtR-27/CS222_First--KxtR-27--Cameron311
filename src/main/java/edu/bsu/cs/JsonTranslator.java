@@ -12,8 +12,8 @@ public class JsonTranslator {
         jsonAsRereadableDocument = Configuration.defaultConfiguration().jsonProvider().parse(jsonAsString);
     }
 
-    public List<String> getTargetList(String target) {
-        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", target));
+    public List<String> getAnyValuesAsList(String keyForJsonValue) {
+        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", keyForJsonValue));
     }
 
     public String getSingleValueFromList(String pathOfTargetList, int indexInTargetList, String keyForJsonValue) {

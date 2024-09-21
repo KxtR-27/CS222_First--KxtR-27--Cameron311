@@ -29,7 +29,7 @@ public class JsonTranslatorTest {
                 "2024-08-24T08:08:03Z",
                 "2024-08-22T11:19:56Z"
         );
-        List<String> actualListOfTimestamps = jsonTranslatorDefault.getTargetList("timestamp");
+        List<String> actualListOfTimestamps = jsonTranslatorDefault.getAnyValuesAsList("timestamp");
 
         Assertions.assertEquals(expectedListOfTimestamps, actualListOfTimestamps);
     }
@@ -53,7 +53,7 @@ public class JsonTranslatorTest {
                 "Aaw1989",
                 "RobertG"
         );
-        List<String> actualListOfUsers = jsonTranslatorDefault.getTargetList("user");
+        List<String> actualListOfUsers = jsonTranslatorDefault.getAnyValuesAsList("user");
 
         Assertions.assertEquals(expectedListOfUsers, actualListOfUsers);
     }
