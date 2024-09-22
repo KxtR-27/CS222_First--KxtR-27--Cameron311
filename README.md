@@ -13,6 +13,9 @@ The second iteration will make use of <ins>**JavaFX**</ins> for input and output
 This project uses **[Jayway JsonPath](https://github.com/json-path/JsonPath "JsonPath Repository")**, which is a Java port of the original JsonPath.
 Jayway JsonPath is available at the [Central Maven Repository](https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path/2.9.0 "JsonPath's MVN Page").
 
+If you would like to utilize this project as-is, no build instructions are necessary.  
+If you would like to add JsonPath as a dependency to your own project, see below.
+
 For **Maven** users, add this to your <kbd>POM</kbd>.
 ```xml
 <dependency>
