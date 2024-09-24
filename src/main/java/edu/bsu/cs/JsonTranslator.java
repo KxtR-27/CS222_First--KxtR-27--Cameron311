@@ -15,7 +15,6 @@ public class JsonTranslator {
     public List<String> getAnyValuesAsList(String keyForJsonValue) {
         return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", keyForJsonValue));
     }
-
     public String getSingleValueFromList(String pathOfTargetList, int indexInTargetList, String keyForJsonValue) {
         return JsonPath.read(
                 jsonAsRereadableDocument,
@@ -23,4 +22,14 @@ public class JsonTranslator {
         ).toString();
     }
 
+    public boolean checkIfJsonContains(String key, String valueToCheck) {
+        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", key)).toString().contains(valueToCheck);
+    }
+
+    public boolean articleIsMissing() {
+        return checkIfJsonContains("missing", "true");
+    }
+    public boolean articleHasInvalidCharacters() {
+        return checkIfJsonContains("invalid", "true");
+    }
 }

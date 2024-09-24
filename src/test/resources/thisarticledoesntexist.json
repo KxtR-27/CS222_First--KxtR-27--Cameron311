@@ -1,0 +1,19 @@
+{
+  "batchcomplete": true,
+  "query": {
+    "normalized": [
+      {
+        "fromencoded": false,
+        "from": "thisarticledoesntexist",
+        "to": "Thisarticledoesntexist"
+      }
+    ],
+    "pages": [
+      {
+        "ns": 0,
+        "title": "Thisarticledoesntexist",
+        "missing": true
+      }
+    ]
+  }
+}
