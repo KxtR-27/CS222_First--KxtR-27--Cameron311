@@ -5,7 +5,6 @@ import javax.naming.NameNotFoundException;
 import java.util.List;
 
 public class WikiApiJsonTranslator extends JsonTranslator {
-
     public WikiApiJsonTranslator(String jsonAsString) {
         super(jsonAsString);
     }
@@ -41,7 +40,6 @@ public class WikiApiJsonTranslator extends JsonTranslator {
         else
             return "";
     }
-
     private List<String> getListOfTimestamps() {
         return getAnyValuesAsList("timestamp");
     }
