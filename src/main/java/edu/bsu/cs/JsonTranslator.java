@@ -22,14 +22,15 @@ public class JsonTranslator {
         ).toString();
     }
 
-    public boolean checkIfJsonContains(String key, String valueToCheck) {
-        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", key)).toString().contains(valueToCheck);
+    public boolean checkIfJsonHasList(String nameOfList) {
+        return jsonAsRereadableDocument.toString().contains(nameOfList);
+    }
+    public boolean checkIfJsonContainsPair(String key, String value) {
+        return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", key)).toString().contains(value);
     }
 
-    public boolean articleIsMissing() {
-        return checkIfJsonContains("missing", "true");
-    }
-    public boolean articleHasInvalidCharacters() {
-        return checkIfJsonContains("invalid", "true");
+    public void throwExceptionIf (boolean condition, Exception e) throws Exception {
+        if (condition)
+            throw e;
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 public class JsonTranslatorTest {
     JsonTranslator jsonTranslatorDefault = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"redirects\":[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}],\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
     JsonTranslator jsonTranslatorMultipleRedirects = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"redirects\":[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"},{\"from\":\"Frank Zappa\",\"to\":\"Elephant\"}],\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
+    JsonTranslator jsonTranslatorNoRedirect = new JsonTranslator("{\"continue\":{\"rvcontinue\":\"20240821130526|1241489226\",\"continue\":\"||\"},\"query\":{\"pages\":[{\"pageid\":10672,\"ns\":0,\"title\":\"Frank Zappa\",\"revisions\":[{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:49Z\"},{\"user\":\"Willem247\",\"timestamp\":\"2024-09-11T23:03:06Z\"},{\"user\":\"GreenC bot\",\"timestamp\":\"2024-09-11T06:24:43Z\"},{\"user\":\"Theworldismovingon2022\",\"timestamp\":\"2024-09-10T16:13:29Z\"},{\"user\":\"Kjell Knudde\",\"timestamp\":\"2024-09-07T21:05:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-07T19:09:58Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:31:51Z\"},{\"user\":\"Eurukleia\",\"timestamp\":\"2024-09-05T04:30:19Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-09-03T21:27:38Z\"},{\"user\":\"Mad420\",\"timestamp\":\"2024-08-29T00:32:05Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-27T16:34:04Z\"},{\"user\":\"Citation bot\",\"timestamp\":\"2024-08-25T15:17:53Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:15:54Z\"},{\"user\":\"Aaw1989\",\"timestamp\":\"2024-08-24T08:08:03Z\"},{\"user\":\"RobertG\",\"timestamp\":\"2024-08-22T11:19:56Z\"}]}]}}");
     JsonTranslator jsonTranslatorPageMissing = new JsonTranslator("{\"batchcomplete\":true,\"query\":{\"normalized\":[{\"fromencoded\":false,\"from\":\"thisarticledoesntexist\",\"to\":\"Thisarticledoesntexist\"}],\"pages\":[{\"ns\":0,\"title\":\"Thisarticledoesntexist\",\"missing\":true}]}}");
     JsonTranslator jsonTranslatorInvalidCharacters = new JsonTranslator("{\"batchcomplete\":true,\"query\":{\"pages\":[{\"title\":\"!!<>**\",\"invalidreason\":\"The requested page title contains invalid characters: \\\"<\\\".\",\"invalid\":true}]}}");
 
@@ -74,33 +75,48 @@ public class JsonTranslatorTest {
 
         Assertions.assertEquals(expectedRedirect, actualRedirect);
     }
+    @Test
+    public void test_getRedirectWhenNonePresent() {
+        String expectedRedirect = "";
+        String actualRedirect;
+
+        if (jsonTranslatorNoRedirect.checkIfJsonHasList("redirects"))
+            actualRedirect = jsonTranslatorNoRedirect.getSingleValueFromList("query.redirects", -1, "to");
+        else
+            actualRedirect = "";
+
+        Assertions.assertEquals(expectedRedirect, actualRedirect);
+    }
+    @Test
+    public void test_getExistingRedirectUnderNewCondition() {
+        String expectedRedirect = "Frank Zappa";
+        String actualRedirect;
+
+        if (jsonTranslatorDefault.checkIfJsonHasList("redirects"))
+            actualRedirect = jsonTranslatorDefault.getSingleValueFromList("query.redirects", -1, "to");
+        else
+            actualRedirect = "";
+
+        Assertions.assertEquals(expectedRedirect, actualRedirect);
+    }
 
     @Test
     public void test_checkForMissingPage_WithMissingPage() {
-        boolean expectedPageMissing = true;
-        boolean actualPageMissing = jsonTranslatorPageMissing.articleIsMissing();
-
-        Assertions.assertEquals(expectedPageMissing, actualPageMissing);
+        boolean pageIsMissing = jsonTranslatorPageMissing.checkIfJsonContainsPair("missing","true");
+        Assertions.assertTrue(pageIsMissing);
     }
     @Test
     public void test_checkForMissingPage_WithoutMissingPage() {
-        boolean expectedPageMissing = false;
-        boolean actualPageMissing = jsonTranslatorDefault.articleIsMissing();
-
-        Assertions.assertEquals(expectedPageMissing, actualPageMissing);
+        boolean pageIsMissing = jsonTranslatorDefault.checkIfJsonContainsPair("missing","true");
+        Assertions.assertFalse(pageIsMissing);
     }
 
     @Test public void test_checkForInvalidCharacters_WithInvalidCharacters() {
-        boolean expectedInvalidCharacters = true;
-        boolean actualInvalidCharacters = jsonTranslatorInvalidCharacters.articleHasInvalidCharacters();
-
-        Assertions.assertEquals(expectedInvalidCharacters, actualInvalidCharacters);
+        boolean existsInvalidCharacters = jsonTranslatorInvalidCharacters.checkIfJsonContainsPair("invalid","true");
+        Assertions.assertTrue(existsInvalidCharacters);
     }
     @Test public void test_checkForInvalidCharacters_WithoutInvalidCharacters() {
-        boolean expectedInvalidCharacters = false;
-        boolean actualInvalidCharacters = jsonTranslatorDefault.articleHasInvalidCharacters();
-
-        Assertions.assertEquals(expectedInvalidCharacters, actualInvalidCharacters);
+        boolean existsInvalidCharacters = jsonTranslatorDefault.checkIfJsonContainsPair("invalid","true");
+        Assertions.assertFalse(existsInvalidCharacters);
     }
-
 }
