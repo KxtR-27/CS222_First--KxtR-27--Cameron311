@@ -6,10 +6,9 @@ import com.jayway.jsonpath.JsonPath;
 import java.util.List;
 import java.util.Objects;
 
-// Because this class's methods are designed to be generic,
-// we are suppressing warnings about inline parameter values.
+// These methods are made to be generic,
+// so we have chosen to ignore warnings about inline values.
 @SuppressWarnings("SameParameterValue")
-
 public class JsonTranslator {
 
     private final Object jsonAsRereadableDocument;
@@ -34,11 +33,6 @@ public class JsonTranslator {
     }
     protected boolean checkIfJsonContainsPair(String key, String value) {
         return JsonPath.read(jsonAsRereadableDocument, String.format("$..%s", key)).toString().contains(value);
-    }
-
-    protected void throwExceptionIf (boolean condition, Exception e) throws Exception {
-        if (condition)
-            throw e;
     }
 
     @Override

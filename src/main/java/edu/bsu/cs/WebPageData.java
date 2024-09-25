@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,10 +11,25 @@ public class WebPageData {
     private final List<String> timestamps;
     private final List<String> users;
 
-    public WebPageData(String redirect, List<String> timestamps, List<String> users) {
+    private final String problem;
+
+    protected WebPageData(String redirect, List<String> timestamps, List<String> users) {
+        this.problem = "";
+
         this.redirect = redirect;
         this.timestamps = timestamps;
         this.users = users;
+    }
+    protected WebPageData(String problem) {
+        this.problem = problem;
+
+        redirect = "";
+        timestamps = new ArrayList<>();
+        users = new ArrayList<>();
+    }
+
+    protected String getProblem() {
+        return problem;
     }
 
     @Override

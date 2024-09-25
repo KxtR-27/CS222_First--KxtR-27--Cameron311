@@ -1,7 +1,5 @@
 package edu.bsu.cs;
 
-import javax.naming.InvalidNameException;
-import javax.naming.NameNotFoundException;
 import java.util.List;
 
 public class WikiApiJsonTranslator extends JsonTranslator {
@@ -9,10 +7,14 @@ public class WikiApiJsonTranslator extends JsonTranslator {
         super(jsonAsString);
     }
 
-    public WebPageData formatInformation() throws Exception {
-        checkForInvalidCharacters();
-        checkForMissingPage();
+    public WebPageData formatInformation() {
+        String problem = checkForProblems();
+        if (!problem.isEmpty())
+            return new WebPageData(problem);
 
+        return formatValidFields();
+    }
+    public WebPageData formatValidFields() {
         String redirect = getLastRedirect();
         List<String> timestamps = getListOfTimestamps();
         List<String> users = getListOfUsers();
@@ -20,18 +22,18 @@ public class WikiApiJsonTranslator extends JsonTranslator {
         return new WebPageData(redirect, timestamps, users);
     }
 
-    private void checkForMissingPage() throws Exception {
-        String articleTitle = getSingleValueFromList("query.pages", 0, "title");
-        throwExceptionIf(
-                checkIfJsonContainsPair("missing","true"),
-                new NameNotFoundException(String.format("Article by name \"%s\" is missing or doesn't exist.", articleTitle))
-        );
+    private String checkForProblems() {
+        if (isTitleInvalid())
+            return "invalid " + getAnyValuesAsList("invalidreason");
+        if (isPageMissing())
+            return "missing " + getAnyValuesAsList("title");
+        return "";
     }
-    private void checkForInvalidCharacters() throws Exception {
-        throwExceptionIf(
-                checkIfJsonContainsPair("invalid","true"),
-                new InvalidNameException(getAnyValuesAsList("invalidreason").toString())
-        );
+    private boolean isTitleInvalid() {
+        return checkIfJsonContainsPair("invalid", "true");
+    }
+    private boolean isPageMissing() {
+        return checkIfJsonContainsPair("missing", "true");
     }
 
     private String getLastRedirect() {
