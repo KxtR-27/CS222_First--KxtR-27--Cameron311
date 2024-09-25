@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 import javax.naming.InvalidNameException;
 import javax.naming.NameNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
@@ -36,7 +37,11 @@ public class WikiApiFetcher {
         );
 
         URL url = URI.create(linkForURL).toURL();
-        String json = IOUtils.toString(url, StandardCharsets.UTF_8);
+        URLConnection connection = url.openConnection();
+        connection.setRequestProperty("User-Agent", "Revision Reporter/0.1.1 (connor.razo@bsu.edu + cameron.witzigreuter@bsu.edu)");
+        InputStream inputStream = connection.getInputStream();
+
+        String json = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 
         return new WikiApiJsonTranslator(json).formatInformation();
     }
