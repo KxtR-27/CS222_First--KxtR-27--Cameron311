@@ -1,8 +1,8 @@
-import edu.bsu.cs.WikiApiFetcher;
+package edu.bsu.cs;
 
 import java.util.Scanner;
 
-public class Main {
+public class MainCLI {
     public static void main(String[] args) throws Exception {
         runProgramInCLI();
         System.exit(0);
