@@ -14,7 +14,7 @@ public class WikiApiJsonTranslator extends JsonTranslator {
 
         return formatValidFields();
     }
-    public WebPageData formatValidFields() {
+    protected WebPageData formatValidFields() {
         String redirect = getLastRedirect();
         List<String> timestamps = getListOfTimestamps();
         List<String> users = getListOfUsers();

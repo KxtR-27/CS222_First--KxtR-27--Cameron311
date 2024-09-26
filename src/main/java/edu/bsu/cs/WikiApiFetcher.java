@@ -20,8 +20,9 @@ public class WikiApiFetcher {
         } catch (IOException e) {
             throw new IOException("An unexpected network error has occurred.");
         }
+
     }
-    protected static void checkDataForErrors(WebPageData webPageData) throws InvalidNameException, NameNotFoundException {
+    private static void checkDataForErrors(WebPageData webPageData) throws InvalidNameException, NameNotFoundException {
         String problem = webPageData.getProblem();
         if (problem.contains("invalid"))
             throw new InvalidNameException(problem.substring(8));
@@ -29,7 +30,7 @@ public class WikiApiFetcher {
             throw new NameNotFoundException("Article " + problem.substring(8) + " is missing or does not exist.");
     }
 
-    protected static WebPageData fetchArticleInformationWithTitle(String title) throws IOException {
+    private static WebPageData fetchArticleInformationWithTitle(String title) throws IOException {
         title = URLEncoder.encode(title, StandardCharsets.UTF_8);
         String linkForURL = String.format(
                 "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&redirects=1&formatversion=2&rvprop=timestamp%s7Cuser&rvlimit=15",
