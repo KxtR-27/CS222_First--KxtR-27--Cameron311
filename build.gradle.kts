@@ -1,11 +1,12 @@
 plugins {
     id("java")
     id("application")
-    id("org.openjfx.javafxplugin") version "0.1.0"
+    id("org.openjfx.javafxplugin") version "0.0.13"
+    id("org.beryx.jlink") version "2.25.0"
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "edu.bsu.cs"
+version = "0.2.0a"
 
 repositories {
     mavenCentral()
@@ -29,11 +30,12 @@ tasks.test {
     useJUnitPlatform()
 }
 
+application {
+    mainClass.set("edu.bsu.cs.application.RevisionParserApplication")
+}
+
 javafx {
-    version = "22"
+    version = "21"
     modules("javafx.controls", "javafx.fxml")
 }
 
-application {
-    mainClass.set("edu.bsu.cs.application.Main")
-}
