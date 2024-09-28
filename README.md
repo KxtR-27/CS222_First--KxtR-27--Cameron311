@@ -3,7 +3,7 @@
 
 ---
 ## Summary
-This project, as per the specifications [1](https://bsu.instructure.com/courses/157856/files/17806780 "Iteration One") [2](https://bsu.instructure.com/courses/157856/files/18275548/ "Iteration Two") on Canvas, allows a user to easily gather the 15 most recent revisions to a Wikipedia page simply by typing the title of the article.
+This project, as per the specifications [\[1\]](https://bsu.instructure.com/courses/157856/files/17806780 "Iteration One") [\[2\]](https://bsu.instructure.com/courses/157856/files/18275548/ "Iteration Two") on Canvas, allows a user to easily gather the 15 most recent revisions to a Wikipedia page simply by typing the title of the article.
 
 The first iteration makes use of the <ins>**console**</ins> for input and output. Simply run the `MainCLI.java` class.
 The second iteration makes use of <ins>**JavaFX**</ins> for input and output. The Gradle run task is tied to this. This version can still be run through `MainCLI.java` as well.
