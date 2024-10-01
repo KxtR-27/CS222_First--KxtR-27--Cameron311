@@ -23,10 +23,22 @@ public class WikiApiJsonTranslator extends JsonTranslator {
     }
 
     private String checkForProblems() {
-        if (isTitleInvalid())
-            return "invalid " + getAnyValuesAsList("invalidreason");
-        if (isPageMissing())
+        if (isTitleInvalid()) {
+            StringBuilder problemBuilder = new StringBuilder("invalid " + getAnyValuesAsList("invalidreason"));
+            int indexOfEscapedCharacters = problemBuilder.indexOf("\\\"");
+
+            if (problemBuilder.indexOf("\\\"") != -1) {
+                while (problemBuilder.toString().contains("\\\"")) {
+                    problemBuilder.replace(indexOfEscapedCharacters, indexOfEscapedCharacters + 2, "");
+                    indexOfEscapedCharacters = problemBuilder.indexOf("\\\"");
+                }
+            }
+
+            return problemBuilder.toString();
+        }
+        if (isPageMissing()) {
             return "missing " + getAnyValuesAsList("title");
+        }
         return "";
     }
     private boolean isTitleInvalid() {

@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.bsu.cs.application.RevisionParserController"
-            prefHeight="400.0" prefWidth="400.0">
-
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.application.RevisionParserController">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="400.0">
+        <TextArea fx:id="outputArea" editable="false" prefHeight="354.0" prefWidth="380.0" promptText="Search for an article to see revisions..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+        <HBox alignment="CENTER" layoutX="174.0" layoutY="287.0" AnchorPane.bottomAnchor="13.800000000000011" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="174.0" />
+    </AnchorPane>
+    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+        <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+        </padding>
+        <AnchorPane>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="240.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <Label text="Article Name:" />
+                <TextField fx:id="urlField" onAction="#getDetails" prefWidth="164.0">
+                    <HBox.margin>
+                        <Insets left="4.0" />
+                    </HBox.margin>
+                </TextField>
+            </HBox>
+        </AnchorPane>
+        <Button mnemonicParsing="false" onAction="#getDetails" prefHeight="25.6" prefWidth="52.0" text="Search" />
+        <Button mnemonicParsing="false" onAction="#clearText" prefHeight="25.6" prefWidth="52.0" text="Clear">
+            <HBox.margin>
+                <Insets left="-10.0" />
+            </HBox.margin></Button>
+    </HBox>
 </VBox>

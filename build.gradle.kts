@@ -2,11 +2,10 @@ plugins {
     id("java")
     id("application")
     id("org.openjfx.javafxplugin") version "0.0.13"
-    id("org.beryx.jlink") version "2.25.0"
 }
 
 group = "edu.bsu.cs"
-version = "0.2.0a"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
