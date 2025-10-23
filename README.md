@@ -18,7 +18,7 @@ To view dependencies, see the bottom of this readme.
 ### Contributors
 | Credited Individual  | Username                                                                         | Role          |
 |----------------------|----------------------------------------------------------------------------------|---------------|
-| Kat Razo             | <kbd>[☍](https://github.com/katrazo "Kat's Profile")</kbd> `katrazo`             | Co-author     |
+| Kat R.               | <kbd>[☍](https://github.com/KxtR-27 "Kat's Profile")</kbd> `KxtR-27`             | Co-author     |
 | Cameron Witzigreuter | <kbd>[☍](https://github.com/Cameron311 "Cameron's Profile")</kbd> `Cameron311`   | Co-author     |
 | Priscilla Zavala     | <kbd>[☍](https://github.com/pazavala "Priscilla's Profile")</kbd> `pazavala`     | Peer Reviewer |
 | Mark William         | <kbd>[☍](https://github.com/Gaezi "Mark's Profile")</kbd> `Gaezi`                | Peer Reviewer |
